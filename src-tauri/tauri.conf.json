@@ -1,0 +1,78 @@
+{
+  "$schema": "https://schema.tauri.app/config/2.0.0-rc",
+  "productName": "DChatt",
+  "version": "../package.json",
+  "identifier": "com.dchatt.app",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Updater",
+        "width": 800,
+        "height": 600
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDNCMUE3NDEyMTVERjQ1RkQKUldUOVJkOFZFblFhTzQzM29mODdYU0NuNjB2UW1NRG5Nd2pDY0s0clJ6SjNNSTlCWnRZUGRubFQK",
+      "endpoints": [
+        "https://github.com/dchat-app/application/releases/latest/download/latest.json"
+      ]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["msi", "rpm", "deb", "app", "dmg", "appimage"],
+    "createUpdaterArtifacts": true,
+    "category": "SocialNetworking",
+    "android": {
+      "minSdkVersion": 30
+    },
+    "copyright": "Copyright © 2024 DChatt",
+    "linux": {
+      "appimage": {
+        "bundleMediaFramework": true,
+        "files": {}
+      },
+      "deb": {
+        "files": {}
+      },
+      "rpm": {
+        "epoch": 0,
+        "files": {},
+        "release": "1"
+      }
+    },
+    "windows": {
+      "allowDowngrades": false,
+      "certificateThumbprint": null,
+      "digestAlgorithm": null,
+      "nsis": null,
+      "signCommand": null,
+      "timestampUrl": null,
+      "tsp": false,
+      "webviewInstallMode": {
+        "silent": true,
+        "type": "downloadBootstrapper"
+      },
+      "wix": null
+    },
+    "publisher": "DChatt",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}
