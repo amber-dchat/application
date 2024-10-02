@@ -4,11 +4,18 @@
   "description": "Capability for windows",
   "windows": ["splash", "main"],
   "remote": {
-    "urls": ["https://dchat-app.github.io"]
+    "urls": [
+      "https://dchat-app.github.io/*",
+      "https://dchat-app.github.io",
+      "https://dchat-app.github.io/"
+    ]
   },
   "permissions": [
     "core:default",
     "core:app:allow-version",
-    "core:event:default"
+    "core:event:default",
+    "core:window:default",
+    "core:window:allow-start-dragging",
+    "core:window:allow-set-progress-bar"
   ]
 }

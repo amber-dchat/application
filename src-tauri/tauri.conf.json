@@ -13,8 +13,14 @@
     "windows": [
       {
         "title": "Updater",
-        "width": 800,
-        "height": 600
+        "width": 350,
+        "height": 500,
+        "transparent": true,
+        "resizable": false,
+        "decorations": false,
+        "center": true,
+        "label": "splash",
+        "visible": false
       }
     ],
     "security": {
