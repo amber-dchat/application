@@ -36,15 +36,17 @@ async fn launch(window: WebviewWindow, app: AppHandle) {
 
     #[cfg(desktop)]
     {
-        let _ = window.destroy();
-
-        WebviewWindowBuilder::new(&app, "main", WebviewUrl::External(Url::parse("https://dchat-app.github.io").unwrap()))
+        WebviewWindowBuilder::new(&app, "chatapplication", WebviewUrl::External(Url::parse("https://dchat-app.github.io").unwrap()))
             .title("DChatt")
             .center()
+            .min_inner_size(1024, 768)
             .closable(true)
             .resizable(true)
+            .maximized(true)
             .build()
             .unwrap();
+
+        let _ = window.destroy();
     }
 }
 
