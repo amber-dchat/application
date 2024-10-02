@@ -39,7 +39,7 @@ async fn launch(window: WebviewWindow, app: AppHandle) {
         WebviewWindowBuilder::new(&app, "chatapplication", WebviewUrl::External(Url::parse("https://dchat-app.github.io").unwrap()))
             .title("DChatt")
             .center()
-            .min_inner_size(1024, 768)
+            .min_inner_size(1024.0, 768.0)
             .closable(true)
             .resizable(true)
             .maximized(true)
