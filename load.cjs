@@ -5,10 +5,9 @@ const store_location = process.env.store_location;
 console.log("🖊️ Installing Android Signature at", store_location);
 
 let jks = process.env.jks;
-let key = process.env.key;
+const key = process.env.key;
 
 jks = Buffer.from(jks, "base64");
-key = Buffer.from(key, "base64");
 
 fs.writeFileSync(store_location, jks);
 fs.writeFileSync(
