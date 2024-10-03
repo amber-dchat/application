@@ -23,6 +23,12 @@ pub fn run() {
 }
 
 #[tauri::command]
+#[cfg(mobile)]
+fn ready() {
+}
+
+#[tauri::command]
+#[cfg(desktop)]
 fn ready(window: WebviewWindow) {
     let _ = window.show();
 }
