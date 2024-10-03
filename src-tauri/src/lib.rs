@@ -1,15 +1,14 @@
 use tauri::{AppHandle, Emitter, Manager, Url, WebviewUrl, WebviewWindow, WebviewWindowBuilder};
 
-#[cfg(desktop)]
 use tauri_plugin_updater::UpdaterExt;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let builder = tauri::Builder::default();
+    let builder = tauri::Builder::default()
+        .plugin(tauri_plugin_updater::Builder::new().build());
 
     #[cfg(not(mobile))]
     let builder = builder
-        .plugin(tauri_plugin_updater::Builder::new().build())
         .plugin(tauri_plugin_single_instance::init(|app, _, _| {
             if let Some((_, win)) = app.webview_windows().iter().next() {
                 let _ = win.set_focus();
@@ -62,13 +61,6 @@ async fn launch(mut window: WebviewWindow, _app: AppHandle) {
 }
 
 #[tauri::command]
-#[cfg(mobile)]
-async fn check_update() -> Result<(), &'static str> {
-    Err("Updater not implemented")
-}
-
-#[tauri::command]
-#[cfg(desktop)]
 async fn check_update(app: AppHandle) -> tauri_plugin_updater::Result<()> {
     let window = app.get_webview_window("splash").unwrap();
     if let Some(update) = app.updater()?.check().await? {

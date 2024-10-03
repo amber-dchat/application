@@ -1,0 +1,21 @@
+[package]
+name = "tauri-plugin-updater"
+version = "2.0.2"
+authors = ["Amder DChat"]
+description = "Tauri Plugin Updater for Amber DChat Android Application"
+edition = "2021"
+rust-version = "1.77.2"
+exclude = ["/examples", "/webview-dist", "/webview-src", "/node_modules"]
+links = "tauri-plugin-updater"
+
+[dependencies]
+tauri = { version = "2" }
+serde = "1"
+serde_json = "1"
+thiserror = "1"
+reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
+semver = "1"
+webbrowser = "1.0.2"
+
+[build-dependencies]
+tauri-plugin = { version = "2", features = ["build"] }

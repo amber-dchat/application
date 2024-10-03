@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    amber_dchatt_app_lib::run()
+    amber_dchat_app_lib::run()
 }
