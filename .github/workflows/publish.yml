@@ -251,7 +251,7 @@ jobs:
         uses: shogo82148/actions-upload-release-asset@v1
         with:
           upload_url: ${{ needs.mkrelease.outputs.upload_url }}
-          asset_path: ./src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release-signed.apk
+          asset_path: ./src-tauri/gen/android/app/build/outputs/apk/universal/release/app-universal-release.apk
           asset_name: app-${{ matrix.suffix }}.apk
           asset_content_type: application/octet-stream
           github_token: ${{ secrets.GITHUB_TOKEN }}
