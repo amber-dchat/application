@@ -130,6 +130,22 @@ jobs:
 
           rustup target add ${{ matrix.target }}
 
+      - name: Install Deps (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          echo "💿 Installing Tauri Requirements"
+
+          sudo apt update
+          sudo apt install libwebkit2gtk-4.1-dev \
+            build-essential \
+            curl \
+            wget \
+            file \
+            libxdo-dev \
+            libssl-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev
+
       - name: Install pnpm
         run: npm i -g pnpm
 
