@@ -2,7 +2,7 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Capability for windows",
-  "windows": ["splash", "main", "chatapplication"],
+  "windows": ["splash", "chatapplication"],
   "remote": {
     "urls": [
       "https://dchat-app.github.io/*",

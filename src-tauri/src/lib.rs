@@ -28,7 +28,8 @@ fn ready(window: WebviewWindow) {
 }
 
 #[tauri::command]
-async fn launch(window: WebviewWindow, app: AppHandle) {
+#[allow(unused_mut)]
+async fn launch(mut window: WebviewWindow, _app: AppHandle) {
     #[cfg(mobile)]
     {
         window.navigate(Url::parse("https://dchat-app.github.io").unwrap());
@@ -36,7 +37,7 @@ async fn launch(window: WebviewWindow, app: AppHandle) {
 
     #[cfg(desktop)]
     {
-        let w = WebviewWindowBuilder::new(&app, "chatapplication", WebviewUrl::External(Url::parse("https://dchat-app.github.io").unwrap()))
+        let w = WebviewWindowBuilder::new(&_app, "chatapplication", WebviewUrl::External(Url::parse("https://dchat-app.github.io").unwrap()))
             .title("DChatt")
             .center()
             .min_inner_size(1024.0, 768.0)
