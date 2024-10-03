@@ -38,13 +38,13 @@ fn ready(window: WebviewWindow) {
 async fn launch(mut window: WebviewWindow, _app: AppHandle) {
     #[cfg(mobile)]
     {
-        window.navigate(Url::parse("https://dchat-app.github.io").unwrap());
+        window.navigate(Url::parse("https://amber-dchat.github.io/").unwrap());
     }
 
     #[cfg(desktop)]
     {
-        let w = WebviewWindowBuilder::new(&_app, "chatapplication", WebviewUrl::External(Url::parse("https://dchat-app.github.io").unwrap()))
-            .title("DChatt")
+        let w = WebviewWindowBuilder::new(&_app, "chatapplication", WebviewUrl::External(Url::parse("https://amber-dchat.github.io/").unwrap()))
+            .title("Amber DChat")
             .center()
             .min_inner_size(1024.0, 768.0)
             .closable(true)

@@ -20,6 +20,6 @@ export default function Updater() {
 
     <progress data-tauri-drag-region max={100} value={progress} className="progress progress-info mt-3" />
 
-    <h2 data-tauri-drag-region className="text-sm font-extrabold mt-auto">&#169; DChatt {new Date().getFullYear()}</h2>
+    <h2 data-tauri-drag-region className="text-sm font-extrabold mt-auto">&#169; Amber DChat {new Date().getFullYear()}</h2>
   </div>
 }

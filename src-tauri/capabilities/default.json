@@ -5,9 +5,9 @@
   "windows": ["splash", "chatapplication"],
   "remote": {
     "urls": [
-      "https://dchat-app.github.io/*",
-      "https://dchat-app.github.io",
-      "https://dchat-app.github.io/"
+      "https://amber-dchat.github.io/*",
+      "https://amber-dchat.github.io",
+      "https://amber-dchat.github.io/"
     ]
   },
   "permissions": [

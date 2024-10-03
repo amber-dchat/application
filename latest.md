@@ -1,3 +1,3 @@
-# DChatt
+# Amber DChat
 
-These are internal release notes for DChatt.
+These are internal release notes for Amber DChat.

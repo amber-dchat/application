@@ -715,8 +715,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "dchatt-app"
-version = "0.0.3"
+name = "amber-dchatt"
+version = "0.1.0"
 dependencies = [
  "serde",
  "serde_json",

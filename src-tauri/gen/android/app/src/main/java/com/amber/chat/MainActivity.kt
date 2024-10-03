@@ -1,3 +1,3 @@
-package com.dchatt.app
+package com.amber.chat
 
 class MainActivity : TauriActivity()

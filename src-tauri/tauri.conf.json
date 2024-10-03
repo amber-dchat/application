@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2.0.0-rc",
-  "productName": "DChatt",
+  "productName": "Amber DChat",
   "version": "../package.json",
-  "identifier": "com.dchatt.app",
+  "identifier": "com.amber.chat",
   "build": {
     "beforeDevCommand": "pnpm vite --host",
     "devUrl": "http://localhost:1420",
@@ -31,7 +31,7 @@
     "updater": {
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDM0MjlBRjlCQzhDMDlGQTYKUldTbW44REltNjhwTk43NUdxajg3QVBEV3Y3RUlpMGhzc0J4bml1RFd5UE5Kdk0waGZ2SnlVNCsK",
       "endpoints": [
-        "https://github.com/dchat-app/application/releases/latest/download/latest.json"
+        "https://github.com/amber-dchat/application/releases/latest/download/latest.json"
       ]
     }
   },
@@ -43,7 +43,7 @@
     "android": {
       "minSdkVersion": 30
     },
-    "copyright": "Copyright © 2024 DChatt",
+    "copyright": "Copyright © 2024 Amber DChat",
     "linux": {
       "appimage": {
         "bundleMediaFramework": true,
@@ -72,7 +72,7 @@
       },
       "wix": null
     },
-    "publisher": "DChatt",
+    "publisher": "Amber DChat",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
