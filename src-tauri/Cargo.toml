@@ -1,7 +1,7 @@
 cargo-features = ["profile-rustflags", "trim-paths"]
 
 [package]
-name = "dchatt-app"
+name = "dchatt"
 version = "0.0.2"
 description = "A Tauri App"
 authors = ["DChatt"]
