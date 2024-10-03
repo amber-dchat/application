@@ -126,7 +126,7 @@ jobs:
       - name: Install Rust
         run: |
           rustup toolchain install nightly
-          rustup target add ${{ matrix.target }}
+          rustup target add nightly-${{ matrix.target }}
 
           rustup default nightly
 
