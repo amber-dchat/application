@@ -1,5 +1,5 @@
 [package]
-name = "tauri-plugin-updater"
+name = "ahq-updater"
 version = "2.0.2"
 authors = ["Amder DChat"]
 description = "Tauri Plugin Updater for Amber DChat Android Application"
