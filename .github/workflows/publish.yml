@@ -178,7 +178,7 @@ jobs:
       - name: Setup Rust
         run: |
           rustup toolchain install nightly
-          rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
+          rustup target add nightly-aarch64-linux-android nightly-armv7-linux-androideabi nightly-i686-linux-android nightly-x86_64-linux-android
 
           rustup default nightly
 
