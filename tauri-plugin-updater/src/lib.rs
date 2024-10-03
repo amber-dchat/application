@@ -1,5 +1,5 @@
 use tauri::{
-  plugin::{Builder, TauriPlugin},
+  plugin::{Builder as TauriBuilder, TauriPlugin},
   Manager, Runtime,
 };
 
@@ -25,8 +25,22 @@ impl<R: Runtime, T: Manager<R>> UpdaterExt<R> for T {
   }
 }
 
+pub struct Builder;
+
+impl Builder {
+  pub fn new() -> Self {
+    Self
+  }
+
+  pub fn build<R: Runtime>(self) -> TauriPlugin<R> {
+    TauriBuilder::new("updater")
+      .invoke_handler(tauri::generate_handler![check_update])
+      .build()
+  }
+}
+
 /// Initializes the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
-  Builder::new("updater")
+  TauriBuilder::new("updater")
     .build()
 }
