@@ -2,7 +2,7 @@ cargo-features = ["profile-rustflags", "trim-paths"]
 
 [package]
 name = "amberdchat"
-version = "0.2.0"
+version = "0.2.1"
 description = "A Tauri App"
 authors = ["Amber DChat"]
 edition = "2021"
