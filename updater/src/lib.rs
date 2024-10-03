@@ -33,7 +33,7 @@ impl Builder {
   }
 
   pub fn build<R: Runtime>(self) -> TauriPlugin<R> {
-    TauriBuilder::new("updater")
+    TauriBuilder::new("aupdater")
       .invoke_handler(tauri::generate_handler![check_update])
       .build()
   }
@@ -41,6 +41,6 @@ impl Builder {
 
 /// Initializes the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
-  TauriBuilder::new("updater")
+  TauriBuilder::new("aupdater")
     .build()
 }

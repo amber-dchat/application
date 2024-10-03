@@ -6,7 +6,7 @@ description = "Tauri Plugin Updater for Amber DChat Android Application"
 edition = "2021"
 rust-version = "1.77.2"
 exclude = ["/examples", "/webview-dist", "/webview-src", "/node_modules"]
-links = "tauri-plugin-updater"
+links = "tauri-plugin-aupdater"
 
 [dependencies]
 tauri = { version = "2" }
