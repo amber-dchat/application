@@ -2,6 +2,9 @@ use tauri::{AppHandle, Emitter, Manager, Url, WebviewUrl, WebviewWindow, Webview
 
 use tauri_plugin_updater::UpdaterExt;
 
+#[cfg(mobile)]
+use ahq_updater as tauri_plugin_updater;
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let builder = tauri::Builder::default()
