@@ -13,7 +13,7 @@ key = Buffer.from(key, "base64");
 fs.writeFileSync(store_location, jks);
 fs.writeFileSync(
   "./src-tauri/gen/android/keystore.properties",
-  ```${key}\nstoreFile=${store_location}\n```
+  `${key}\nstoreFile=${store_location}\n`
 );
 
 console.log("✅ Android Signature Installed");
