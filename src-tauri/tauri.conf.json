@@ -4,7 +4,7 @@
   "version": "../package.json",
   "identifier": "com.dchatt.app",
   "build": {
-    "beforeDevCommand": "pnpm dev",
+    "beforeDevCommand": "pnpm vite --host",
     "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "pnpm build",
     "frontendDist": "../dist"
@@ -29,7 +29,7 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDNCMUE3NDEyMTVERjQ1RkQKUldUOVJkOFZFblFhTzQzM29mODdYU0NuNjB2UW1NRG5Nd2pDY0s0clJ6SjNNSTlCWnRZUGRubFQK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDM0MjlBRjlCQzhDMDlGQTYKUldTbW44REltNjhwTk43NUdxajg3QVBEV3Y3RUlpMGhzc0J4bml1RFd5UE5Kdk0waGZ2SnlVNCsK",
       "endpoints": [
         "https://github.com/dchat-app/application/releases/latest/download/latest.json"
       ]

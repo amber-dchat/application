@@ -36,7 +36,7 @@ async fn launch(window: WebviewWindow, app: AppHandle) {
 
     #[cfg(desktop)]
     {
-        WebviewWindowBuilder::new(&app, "chatapplication", WebviewUrl::External(Url::parse("https://dchat-app.github.io").unwrap()))
+        let w = WebviewWindowBuilder::new(&app, "chatapplication", WebviewUrl::External(Url::parse("https://dchat-app.github.io").unwrap()))
             .title("DChatt")
             .center()
             .min_inner_size(1024.0, 768.0)
@@ -45,6 +45,10 @@ async fn launch(window: WebviewWindow, app: AppHandle) {
             .maximized(true)
             .build()
             .unwrap();
+        
+        let _ = w.set_focus();
+        let _ = w.maximize();
+        let _ = w.set_focus();
 
         let _ = window.destroy();
     }

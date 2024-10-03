@@ -1,7 +1,13 @@
-# Tauri + React + Typescript
+# Required Tools
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+- NodeJS
+- pnpm
+- Rust
 
-## Recommended IDE Setup
+# Dev
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+```sh
+npm i -g pnpm
+pnpm install
+pnpm dev
+```
