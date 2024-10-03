@@ -1,3 +1,1 @@
-# Amber DChat
-
-These are internal release notes for Amber DChat.
+These are internal releases for Amber DChat.
