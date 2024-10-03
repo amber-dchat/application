@@ -214,7 +214,7 @@ jobs:
             librsvg2-dev
 
       - name: Install Android Signature
-        run: node load.js
+        run: node load.cjs
         env:
           jks: ${{ secrets.ANDROID_BASE64 }}
           key: ${{ secrets.ANDROID_KEYSTORE }}
