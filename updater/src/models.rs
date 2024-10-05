@@ -27,7 +27,7 @@ impl<R: Runtime> Update<R> {
     on_download_finish();
 
     let _ = self.handle.
-      run_mobile_plugin::<()>("open", self.download)?;
+      run_mobile_plugin::<()>("open", self.download.clone())?;
 
     Ok(())
     //webbrowser::open(&self.download).map_err(|_| crate::Error::BrowserOpenError(BrowserOpenError))
