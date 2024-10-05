@@ -18,14 +18,14 @@ pub struct Release {
   pub assets: Vec<Asset>,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Update<R: Runtime> {
   pub download: String,
   pub(crate) handle: PluginHandle<R>
 }
 
-impl Update {
+impl<R: Runtime> Update<R> {
   pub async fn download_and_install<C: FnMut(usize, Option<u64>), D: FnOnce()>(&self, _on_chunk: C, on_download_finish: D) -> crate::Result<()> {
     on_download_finish();
 

@@ -21,7 +21,7 @@ pub trait UpdaterExt<R: Runtime> {
 
 impl<R: Runtime, T: Manager<R>> UpdaterExt<R> for T {
   fn updater(&self) -> Result<Updater<R>> {
-    self.state().inner()
+    self.state::<Updater<R>>().inner()
   }
 }
 

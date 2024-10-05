@@ -40,7 +40,7 @@ impl<R: Runtime> Updater<R> {
     Ok(response)
   }
 
-  pub async fn check(&self) -> crate::Result<Option<Update>> {
+  pub async fn check(&self) -> crate::Result<Option<Update<R>>> {
     let Release { assets, tag_name } = self.get_release().await?;
 
     let new = Version::parse(&tag_name).unwrap_or(Version::new(0, 0, 0));
