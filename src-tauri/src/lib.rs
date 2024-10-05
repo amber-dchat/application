@@ -1,4 +1,7 @@
-use tauri::{AppHandle, Emitter, Manager, Url, WebviewUrl, WebviewWindow, WebviewWindowBuilder};
+use tauri::{AppHandle, Emitter, Manager, Url, WebviewWindow};
+
+#[cfg(desktop)]
+use tauri::{WebviewUrl, WebviewWindowBuilder};
 
 #[cfg(mobile)]
 use ahq_updater as updater;
@@ -43,7 +46,7 @@ fn ready(window: WebviewWindow) {
 async fn launch(mut window: WebviewWindow, _app: AppHandle) {
     #[cfg(mobile)]
     {
-        window.navigate(Url::parse("https://amber-dchat.github.io/").unwrap());
+        let _ = window.navigate(Url::parse("https://amber-dchat.github.io/").unwrap());
     }
 
     #[cfg(desktop)]
