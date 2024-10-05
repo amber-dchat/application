@@ -21,7 +21,7 @@ export default function Updater() {
     <h1 data-tauri-drag-region className="font-sans text-2xl md:text-3xl">Amber DChat</h1>
     <h2 data-tauri-drag-region className="text-sm font-extrabold mt-2">&#169; Amber DChat {new Date().getFullYear()}</h2>
 
-    <h1 data-tauri-drag-region className="mt-auto pr-3 mb-1 mx-auto md:mr-0 md:ml-auto">{text}</h1>
+    <h1 data-tauri-drag-region className="mt-auto pr-3 mb-2 mx-auto md:mr-0 md:ml-auto">{text}</h1>
 
     <progress data-tauri-drag-region max={100} value={progress} className="progress" />
   </div>
