@@ -15,7 +15,7 @@ Default permissions for the plugin
 <tr>
 <td>
 
-`updater:allow-ping`
+`ahq-updater:allow-ping`
 
 </td>
 <td>
@@ -28,7 +28,7 @@ Enables the ping command without any pre-configured scope.
 <tr>
 <td>
 
-`updater:deny-ping`
+`ahq-updater:deny-ping`
 
 </td>
 <td>

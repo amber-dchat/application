@@ -1,6 +1,6 @@
 use semver::Version;
 use tauri::{
-  AppHandle, Runtime,
+  plugin::{PluginApi, PluginHandle}, AppHandle, Runtime
 };
 use crate::models::*;
 use std::sync::LazyLock;
@@ -19,12 +19,14 @@ pub(crate) static CLIENT: LazyLock<Client> = LazyLock::new(|| {
 // initializes the Kotlin or Swift plugin classes
 pub fn init<R: Runtime>(
   app: &AppHandle<R>,
+  api: PluginApi<R>,
 ) -> crate::Result<Updater<R>> {
-  Ok(Updater(app.clone()))
+  let handle = api.register_android_plugin("com.plugin.aupdater", "Updater")?;
+  Ok(Updater(app.clone(), handle))
 }
 
 /// Access to the updater APIs.
-pub struct Updater<R: Runtime>(AppHandle<R>);
+pub struct Updater<R: Runtime>(AppHandle<R>, PluginHandle<R>);
 
 impl<R: Runtime> Updater<R> {
   pub async fn get_release(&self) -> crate::Result<Release> {
@@ -51,7 +53,7 @@ impl<R: Runtime> Updater<R> {
           return Ok(None);
         };
 
-        Some(Update { download: browser_download_url })
+        Some(Update { download: browser_download_url, handle: self.1 })
       } else {
         None
       }

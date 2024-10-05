@@ -3,6 +3,7 @@ name: Build & Publish Desktop & Mobile application
 on:
   push:
     branches:
+      - main
       - release
 
 permissions: write-all
@@ -39,13 +40,16 @@ jobs:
             const fs = require("fs");
             const version = require('./package.json').version;
 
+            const alpha = process.env.BRANCH != "release";
+
             const { data } = await github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              tag_name: version,
-              name: `Amber DChat v${version}`,
+              tag_name: alpha ? `${version}-alpha.${Date.now()}` : version,
+              name: `Amber DChat v${version}${alpha ? " (Testing)": ""}`,
               body: String(fs.readFileSync("./latest.md")),
-              draft: true
+              draft: true,
+              prerelease: alpha
             });
             return data
 
