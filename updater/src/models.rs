@@ -26,8 +26,10 @@ impl<R: Runtime> Update<R> {
   pub async fn download_and_install<C: FnMut(usize, Option<u64>), D: FnOnce()>(&self, _on_chunk: C, on_download_finish: D) -> crate::Result<()> {
     on_download_finish();
 
-    self.handle.
-      run_mobile_plugin("open", self.download)
+    let _ = self.handle.
+      run_mobile_plugin::<()>("open", self.download)?;
+
+    Ok(())
     //webbrowser::open(&self.download).map_err(|_| crate::Error::BrowserOpenError(BrowserOpenError))
   }
 }
