@@ -1,6 +1,7 @@
 use semver::Version;
+use serde::de::DeserializeOwned;
 use tauri::{
-  AppHandle, Runtime,
+  plugin::{PluginApi, PluginHandle}, AppHandle, Runtime
 };
 use crate::models::*;
 use std::sync::LazyLock;
@@ -17,14 +18,16 @@ pub(crate) static CLIENT: LazyLock<Client> = LazyLock::new(|| {
 
 
 // initializes the Kotlin or Swift plugin classes
-pub fn init<R: Runtime>(
+pub fn init<R: Runtime, C: DeserializeOwned>(
   app: &AppHandle<R>,
+  api: PluginApi<R, C>,
 ) -> crate::Result<Updater<R>> {
-  Ok(Updater(app.clone()))
+  let handle = api.register_android_plugin("com.plugin.aupdater", "Updater")?;
+  Ok(Updater(app.clone(), handle))
 }
 
 /// Access to the updater APIs.
-pub struct Updater<R: Runtime>(AppHandle<R>);
+pub struct Updater<R: Runtime>(AppHandle<R>, PluginHandle<R>);
 
 impl<R: Runtime> Updater<R> {
   pub async fn get_release(&self) -> crate::Result<Release> {
@@ -38,7 +41,7 @@ impl<R: Runtime> Updater<R> {
     Ok(response)
   }
 
-  pub async fn check(&self) -> crate::Result<Option<Update>> {
+  pub async fn check(&self) -> crate::Result<Option<Update<R>>> {
     let Release { assets, tag_name } = self.get_release().await?;
 
     let new = Version::parse(&tag_name).unwrap_or(Version::new(0, 0, 0));
@@ -51,7 +54,7 @@ impl<R: Runtime> Updater<R> {
           return Ok(None);
         };
 
-        Some(Update { download: browser_download_url })
+        Some(Update { download: browser_download_url, handle: self.1.clone() })
       } else {
         None
       }

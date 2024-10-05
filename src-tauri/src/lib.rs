@@ -67,7 +67,7 @@ async fn launch(mut window: WebviewWindow, _app: AppHandle) {
 }
 
 #[tauri::command]
-async fn check_update(app: AppHandle) -> tauri_plugin_updater::Result<()> {
+async fn check_update(app: AppHandle) -> updater::Result<()> {
     let window = app.get_webview_window("splash").unwrap();
     if let Some(update) = app.updater()?.check().await? {
         update.download_and_install(|c, t| {

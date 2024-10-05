@@ -1,19 +1,7 @@
-use std::fmt::Display;
-
+use tauri::plugin::mobile::PluginInvokeError;
 use serde::{ser::Serializer, Serialize};
 
 pub type Result<T> = std::result::Result<T, Error>;
-
-#[derive(Debug)]
-pub struct BrowserOpenError;
-
-impl Display for BrowserOpenError {
-  fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-    write!(f, "Failed to open browser")
-  }
-}
-
-impl std::error::Error for BrowserOpenError {}
 
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
@@ -24,7 +12,7 @@ pub enum Error {
   Fetch(#[from] reqwest::Error),
 
   #[error(transparent)]
-  BrowserOpenError(#[from] BrowserOpenError)
+  Plugin(#[from] PluginInvokeError)  
 }
 
 impl Serialize for Error {

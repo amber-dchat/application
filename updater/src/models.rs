@@ -1,6 +1,5 @@
 use serde::{Deserialize, Serialize};
-
-use crate::error::BrowserOpenError;
+use tauri::{plugin::PluginHandle, Runtime};
 
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -17,16 +16,20 @@ pub struct Release {
   pub assets: Vec<Asset>,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
-#[serde(rename_all = "camelCase")]
-pub struct Update {
+#[derive(Debug)]
+pub struct Update<R: Runtime> {
   pub download: String,
+  pub(crate) handle: PluginHandle<R>
 }
 
-impl Update {
+impl<R: Runtime> Update<R> {
   pub async fn download_and_install<C: FnMut(usize, Option<u64>), D: FnOnce()>(&self, _on_chunk: C, on_download_finish: D) -> crate::Result<()> {
     on_download_finish();
 
-    webbrowser::open(&self.download).map_err(|_| crate::Error::BrowserOpenError(BrowserOpenError))
+    let _ = self.handle.
+      run_mobile_plugin::<()>("open", self.download.clone())?;
+
+    Ok(())
+    //webbrowser::open(&self.download).map_err(|_| crate::Error::BrowserOpenError(BrowserOpenError))
   }
 }
