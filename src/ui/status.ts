@@ -44,7 +44,7 @@ export function useUpdaterStatus() {
 
         setTimeout(() => {
           invoke("launch");
-        }, 1000);
+        }, 3000);
       } else if (payload === "Installing") {
         setText("Installing");
         window.setProgressBar({

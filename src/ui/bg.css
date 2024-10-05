@@ -1,4 +1,9 @@
-.bg {
-  background: url("./bg.jpg");
+.bg1 {
+  background: url("./bg1.jpg");
+  background-size: cover;
+}
+
+.bg2 {
+  background: url("./bg2.jpg");
   background-size: cover;
 }
