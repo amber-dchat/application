@@ -1,4 +1,5 @@
 use semver::Version;
+use serde::de::DeserializeOwned;
 use tauri::{
   plugin::{PluginApi, PluginHandle}, AppHandle, Runtime
 };
@@ -17,9 +18,9 @@ pub(crate) static CLIENT: LazyLock<Client> = LazyLock::new(|| {
 
 
 // initializes the Kotlin or Swift plugin classes
-pub fn init<R: Runtime>(
+pub fn init<R: Runtime, C: DeserializeOwned>(
   app: &AppHandle<R>,
-  api: PluginApi<R>,
+  api: PluginApi<R, C>,
 ) -> crate::Result<Updater<R>> {
   let handle = api.register_android_plugin("com.plugin.aupdater", "Updater")?;
   Ok(Updater(app.clone(), handle))
@@ -53,7 +54,7 @@ impl<R: Runtime> Updater<R> {
           return Ok(None);
         };
 
-        Some(Update { download: browser_download_url, handle: self.1 })
+        Some(Update { download: browser_download_url, handle: self.1.clone() })
       } else {
         None
       }

@@ -1,8 +1,6 @@
 use serde::{Deserialize, Serialize};
 use tauri::{plugin::PluginHandle, Runtime};
 
-use crate::error::BrowserOpenError;
-
 
 #[derive(Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -19,7 +17,6 @@ pub struct Release {
 }
 
 #[derive(Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct Update<R: Runtime> {
   pub download: String,
   pub(crate) handle: PluginHandle<R>
