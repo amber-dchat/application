@@ -26,6 +26,8 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
   Ok(Updater(app.clone(), handle))
 }
 
+static mut LAST: bool = false;
+
 /// Access to the updater APIs.
 pub struct Updater<R: Runtime>(AppHandle<R>, PluginHandle<R>);
 
@@ -42,11 +44,16 @@ impl<R: Runtime> Updater<R> {
   }
 
   pub async fn check(&self) -> crate::Result<Option<Update<R>>> {
+    if unsafe { LAST } {
+      return Ok(None);
+    }
     let Release { assets, tag_name } = self.get_release().await?;
 
     let new = Version::parse(&tag_name).unwrap_or(Version::new(0, 0, 0));
 
     let current = &self.0.package_info().version;
+
+    unsafe { LAST = true }
 
     Ok(
       if &new > current {

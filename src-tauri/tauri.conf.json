@@ -13,7 +13,7 @@
     "windows": [
       {
         "title": "Updater",
-        "width": 350,
+        "width": 800,
         "height": 500,
         "transparent": true,
         "resizable": false,

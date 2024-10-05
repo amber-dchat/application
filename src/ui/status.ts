@@ -4,7 +4,7 @@ import { ProgressBarStatus } from "@tauri-apps/api/window";
 import { useEffect, useState } from "react";
 
 export function useUpdaterStatus() {
-  const [text, setText] = useState("Checking for Updates...");
+  const [text, setText] = useState("Checking for Updates");
   const [progress, setProgress] = useState<number | undefined>(undefined);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export function useUpdaterStatus() {
 
     window.setProgressBar({
       status: ProgressBarStatus.Indeterminate
-    });
+    }).catch(() => { });
 
     invoke("check_update")
       .catch(() => {
@@ -21,39 +21,41 @@ export function useUpdaterStatus() {
 
     window.listen("update", ({ payload }) => {
       if (payload == "error") {
-        setText("Error, trying again...");
+        setText("Error, trying again");
 
         window.setProgressBar({
           status: ProgressBarStatus.Error,
           progress: 50
-        });
+        }).catch(() => { });
 
         setTimeout(() => {
           invoke("check_update")
-            .catch(() => {
+            .catch((e) => {
+              console.log(e)
               window.emit("update", "error");
             })
         }, 5000);
       } else if (payload === "none") {
-        setText("Launching...");
+        setText("Launching");
 
         window.setProgressBar({
           status: ProgressBarStatus.None
-        });
+        }).catch(() => { });
 
         setTimeout(() => {
           invoke("launch");
         }, 1000);
       } else if (payload === "Installing") {
-        setText("Installing...");
+        setText("Installing");
         window.setProgressBar({
           status: ProgressBarStatus.Indeterminate
-        });
+        }).catch(() => { });
       } else if (payload === "Installed") {
-        setText("Installed");
+        setText("Please reload the app after installing the update");
+
         window.setProgressBar({
           status: ProgressBarStatus.None
-        });
+        }).catch(() => { });
       } else {
         const progress = payload as number;
         setProgress(progress);
@@ -61,7 +63,7 @@ export function useUpdaterStatus() {
         window.setProgressBar({
           status: ProgressBarStatus.Normal,
           progress: progress
-        });
+        }).catch(() => { });
       }
     });
   }, []);
