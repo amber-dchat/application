@@ -1,6 +1,6 @@
 {
-  "$schema": "../gen/schemas/desktop-schema.json",
-  "identifier": "default",
+  "$schema": "./gen/schemas/desktop-schema.json",
+  "identifier": "debug",
   "description": "Capability for debug mode",
   "windows": ["splash", "chatapplication"],
   "remote": {
