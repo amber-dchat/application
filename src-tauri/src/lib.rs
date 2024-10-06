@@ -58,9 +58,9 @@ async fn launch(mut window: WebviewWindow, _app: AppHandle) {
     {
         #[cfg(debug_assertions)]
         _app.add_capability(include_str!("../capabilities/debug.json"));
-        
+
         #[cfg(debug_assertions)]
-        let url = WebviewUrl::External(Url::parse("http://localhost:5000/").unwrap());
+        let url = WebviewUrl::External(Url::parse("http://localhost:3000/").unwrap());
         
         #[cfg(not(debug_assertions))]
         let url = WebviewUrl::External(Url::parse("https://amber-dchat.github.io/").unwrap());
