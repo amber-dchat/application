@@ -9,6 +9,12 @@ use ahq_updater as updater;
 #[cfg(desktop)]
 use tauri_plugin_updater as updater;
 
+#[cfg(desktop)]
+use rpc_server::bootstrap;
+
+#[cfg(desktop)]
+mod structs;
+
 use updater::UpdaterExt;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -32,8 +38,7 @@ pub fn run() {
 
 #[tauri::command]
 #[cfg(mobile)]
-fn ready() {
-}
+fn ready() {}
 
 #[tauri::command]
 #[cfg(desktop)]
@@ -51,7 +56,16 @@ async fn launch(mut window: WebviewWindow, _app: AppHandle) {
 
     #[cfg(desktop)]
     {
-        let w = WebviewWindowBuilder::new(&_app, "chatapplication", WebviewUrl::External(Url::parse("https://amber-dchat.github.io/").unwrap()))
+        #[cfg(debug_assertions)]
+        _app.add_capability(include_str!("../capabilities/debug.json"));
+        
+        #[cfg(debug_assertions)]
+        let url = WebviewUrl::External(Url::parse("http://localhost:5000/").unwrap());
+        
+        #[cfg(not(debug_assertions))]
+        let url = WebviewUrl::External(Url::parse("https://amber-dchat.github.io/").unwrap());
+
+        let w = WebviewWindowBuilder::new(&_app, "chatapplication", url)
             .title("Amber DChat")
             .center()
             .min_inner_size(1024.0, 768.0)
@@ -60,10 +74,12 @@ async fn launch(mut window: WebviewWindow, _app: AppHandle) {
             .maximized(true)
             .build()
             .unwrap();
-        
+
         let _ = w.set_focus();
         let _ = w.maximize();
         let _ = w.set_focus();
+
+        bootstrap(structs::IWindow { inner: w });
 
         let _ = window.destroy();
     }

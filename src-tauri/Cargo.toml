@@ -2,7 +2,7 @@ cargo-features = ["profile-rustflags", "trim-paths"]
 
 [package]
 name = "amberdchat"
-version = "0.3.2"
+version = "0.4.0"
 description = "A Tauri App"
 authors = ["Amber DChat"]
 edition = "2021"
@@ -27,6 +27,7 @@ ahq-updater = { path = "../updater" }
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-single-instance = "2.0.1"
 tauri-plugin-updater = "2.0.2"
+rpc_server = { git = "https://github.com/amber-dchat/rpc", branch = "main" }
 
 [profile.dev]
 incremental = true          # Compile your binary in smaller steps.
